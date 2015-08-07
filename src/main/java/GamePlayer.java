@@ -28,17 +28,6 @@ public class GamePlayer {
     public void getMove() {
         Boolean movePlaced = false;
         while (isGame) {
-            isFull = boardView.boardIsFull();
-            if (isFull) {
-                quit();
-                break;
-            }
-            isWon = boardView.reportWin();
-            if (isWon){
-                printStream.println("Player " + player + " won!!!");
-                quit();
-                break;
-            }
             printStream.println("Please Enter a Square in Which to move (1-9):");
             String userInput = "";
             try {
@@ -54,6 +43,17 @@ public class GamePlayer {
             } else {
                 printStream.println("That is not a valid input, please try again.");
             }
+            isWon = boardView.reportWin();
+            if (isWon) {
+                printStream.println("Player " + player + " won!!!");
+                quit();
+                break;
+            }
+            isFull = boardView.boardIsFull();
+            if (isFull) {
+                quit();
+                break;
+            }
             if (movePlaced == true) {
                 switchPlayer();
                 printStream.println(" Player " + player + " it is your turn!");
@@ -61,6 +61,9 @@ public class GamePlayer {
         }
 
     }
+
+
+
     public void switchPlayer(){
         if (player ==1)
         {

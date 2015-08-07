@@ -76,8 +76,11 @@ public class BoardViewTest {
 
     @Test
     public void shouldReportWinWhen3InARow() throws Exception {
-        boardView.placeMove(3,1);
-        boardView.placeMove(6,1);
+        boardView.saveMove(7);
+        boardView.saveMove(8);
+        boardView.saveMove(9);
+        boardView.placeMove(7,1);
+        boardView.placeMove(8,1);
         boardView.placeMove(9,1);
         assertEquals(boardView.reportWin(),true);
 

@@ -83,39 +83,38 @@ public class BoardView {
 
 
     public Boolean reportWin() {
-        boolean win = false;
-        if (boardArray[0] != " " && boardArray[0].equals(boardArray[1]) && boardArray[1].equals(boardArray[2]))
+        if (boardModel.get(1)==true && boardArray[0].equals(boardArray[1]) && boardArray[1].equals(boardArray[2]))
         {
-            win = true;
+            return true;
         }
-        else if (boardArray[3] != " " && boardArray[3].equals(boardArray[4]) && boardArray[4].equals(boardArray[5]))
+        else if (boardModel.get(4)==true  && boardArray[3].equals(boardArray[4]) && boardArray[4].equals(boardArray[5]))
         {
-            win = true;
+            return true;
         }
-        else if  (boardArray[3] != " " && boardArray[6].equals(boardArray[7]) && boardArray[7].equals(boardArray[8]))
+        else if  (boardModel.get(7)==true  && boardArray[6].equals(boardArray[7]) && boardArray[7].equals(boardArray[8]))
         {
-            win = true;
+            return true;
         }
-        else if  (boardArray[3] != " " && boardArray[0].equals(boardArray[3]) && boardArray[3].equals(boardArray[6]))
+        else if  (boardModel.get(1)==true  && boardArray[0].equals(boardArray[3]) && boardArray[3].equals(boardArray[6]))
         {
-            win = true;
+            return true;
         }
-        else if  (boardArray[3] != " " && boardArray[1].equals(boardArray[4]) && boardArray[4].equals(boardArray[7]))
+        else if  (boardModel.get(2)==true &&  boardArray[1].equals(boardArray[4]) && boardArray[4].equals(boardArray[7]))
         {
-            win = true;
+            return true;
         }
-        else if  (boardArray[3] != " " && boardArray[2].equals(boardArray[5]) && boardArray[5].equals(boardArray[8]))
+        else if  (boardModel.get(3)==true  && boardArray[2].equals(boardArray[5]) && boardArray[5].equals(boardArray[8]))
         {
-            win = true;
+            return true;
         }
-        else if  (boardArray[3] != " " && boardArray[0].equals(boardArray[4]) && boardArray[4].equals(boardArray[8]))
+        else if  (boardModel.get(1)==true && boardArray[0].equals(boardArray[4]) && boardArray[4].equals(boardArray[8]))
         {
-            win = true;
+            return true;
         }
-        else if (boardArray[3] != " " && boardArray[2].equals(boardArray[4]) && boardArray[4].equals(boardArray[6]))
+        else if (boardModel.get(3)==true  && boardArray[2].equals(boardArray[4]) && boardArray[4].equals(boardArray[6]))
         {
-            win = true;
+            return true;
         }
-        return  win;
+        return false;
     }
 }
