@@ -78,5 +78,12 @@ public class GamePlayerTest {
 
     }
 
+    @Test
+    public void shouldReportWinWhenGameIsWon() throws Exception {
+        when(boardView.reportWin()).thenReturn(true);
+        gamePlayer.getMove();
+        verify(printStream).println("Nice Game the game is over");
 
+
+    }
 }

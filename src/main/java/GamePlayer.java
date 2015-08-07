@@ -13,6 +13,7 @@ public class GamePlayer {
     private Boolean isGame;
     private Integer player;
     private Boolean isFull;
+    private Boolean isWon;
     //private Map<Integer,Boolean> BoardModel;
 
     public GamePlayer(BufferedReader reader, BoardView boardView, PrintStream printStream) {
@@ -29,6 +30,12 @@ public class GamePlayer {
         while (isGame) {
             isFull = boardView.boardIsFull();
             if (isFull) {
+                quit();
+                break;
+            }
+            isWon = boardView.reportWin();
+            if (isWon){
+                printStream.println("Player " + player + " won!!!");
                 quit();
                 break;
             }
@@ -49,6 +56,7 @@ public class GamePlayer {
             }
             if (movePlaced == true) {
                 switchPlayer();
+                printStream.println(" Player " + player + " it is your turn!");
             }
         }
 

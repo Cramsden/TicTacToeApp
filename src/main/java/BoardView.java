@@ -1,4 +1,5 @@
 import java.io.PrintStream;
+import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -81,5 +82,40 @@ public class BoardView {
     }
 
 
-
+    public Boolean reportWin() {
+        boolean win = false;
+        if (boardArray[0] != " " && boardArray[0].equals(boardArray[1]) && boardArray[1].equals(boardArray[2]))
+        {
+            win = true;
+        }
+        else if (boardArray[3] != " " && boardArray[3].equals(boardArray[4]) && boardArray[4].equals(boardArray[5]))
+        {
+            win = true;
+        }
+        else if  (boardArray[3] != " " && boardArray[6].equals(boardArray[7]) && boardArray[7].equals(boardArray[8]))
+        {
+            win = true;
+        }
+        else if  (boardArray[3] != " " && boardArray[0].equals(boardArray[3]) && boardArray[3].equals(boardArray[6]))
+        {
+            win = true;
+        }
+        else if  (boardArray[3] != " " && boardArray[1].equals(boardArray[4]) && boardArray[4].equals(boardArray[7]))
+        {
+            win = true;
+        }
+        else if  (boardArray[3] != " " && boardArray[2].equals(boardArray[5]) && boardArray[5].equals(boardArray[8]))
+        {
+            win = true;
+        }
+        else if  (boardArray[3] != " " && boardArray[0].equals(boardArray[4]) && boardArray[4].equals(boardArray[8]))
+        {
+            win = true;
+        }
+        else if (boardArray[3] != " " && boardArray[2].equals(boardArray[4]) && boardArray[4].equals(boardArray[6]))
+        {
+            win = true;
+        }
+        return  win;
+    }
 }
