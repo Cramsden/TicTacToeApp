@@ -37,23 +37,15 @@ public class GamePlayer {
             }
             Integer place = Integer.parseInt(userInput);
             if (place <= 9 && place > 0) {
-                boardView.saveMove(place);
-                movePlaced = boardView.placeMove(place, player);
-                boardView.drawSpacesAndSeparators();
+                //boardView.saveMove(place);
+                movePlaced =boardView.handleMove(place,player);
+                //movePlaced = boardView.placeMove(place, player);
+               // boardView.drawSpacesAndSeparators();
             } else {
                 printStream.println("That is not a valid input, please try again.");
             }
-            isWon = boardView.reportWin();
-            if (isWon) {
-                printStream.println("Player " + player + " won!!!");
-                quit();
-                break;
-            }
-            isFull = boardView.boardIsFull();
-            if (isFull) {
-                quit();
-                break;
-            }
+            checkIfWon();
+            checkIfFull();
             if (movePlaced == true) {
                 switchPlayer();
                 printStream.println(" Player " + player + " it is your turn!");
@@ -62,6 +54,20 @@ public class GamePlayer {
 
     }
 
+    private void checkIfWon() {
+        isWon = boardView.reportWin();
+        if (isWon) {
+            printStream.println("Player " + player + " won!!!");
+            quit();
+        }
+    }
+
+    private void checkIfFull() {
+        isFull = boardView.boardIsFull();
+        if (isFull) {
+            quit();
+        }
+    }
 
 
     public void switchPlayer(){
@@ -77,5 +83,10 @@ public class GamePlayer {
     public void quit() {
         isGame = false;
         printStream.println("Nice Game the game is over");
+    }
+
+    public void start() {
+        boardView.drawSpacesAndSeparators();
+        getMove();
     }
 }

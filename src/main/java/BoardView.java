@@ -117,4 +117,11 @@ public class BoardView {
         }
         return false;
     }
+
+    public boolean handleMove(Integer place,Integer player){
+        saveMove(place);
+        boolean movePlaced = placeMove(place,player);
+        drawSpacesAndSeparators();
+        return movePlaced;
+    }
 }
