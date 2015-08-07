@@ -52,14 +52,32 @@ public class BoardView {
     public Map<Integer, Boolean> currentBoard() {
         return boardModel;
     }
-    public void placeMove(Integer place, Integer player){
-        if (player == 1){
-            boardArray[place-1] = "X";
+    public boolean placeMove(Integer place, Integer player){
+        if(boardArray[place-1] == " ") {
+            if (player == 1) {
+                boardArray[place - 1] = "X";
+                return true;
+            } else {
+                boardArray[place - 1] = "0";
+                return true;
+            }
         }
         else {
-            boardArray[place-1] = "0";
+            return false;
         }
 
+    }
+    public Boolean boardIsFull()
+    {
+        boolean isFull = true;
+        for (Boolean value: boardModel.values())
+        {
+            if (value == false) {
+                isFull = false;
+                break;
+            }
+        }
+        return  isFull;
     }
 
 

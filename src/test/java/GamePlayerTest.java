@@ -4,6 +4,7 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.PrintStream;
 
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 
@@ -51,7 +52,31 @@ public class GamePlayerTest {
 
     @Test
     public void shouldSwitchPlayerAfterPlayer1moves() throws Exception {
-        
+        when(reader.readLine()).thenReturn("1");
+        gamePlayer.getMove();
+        when(reader.readLine()).thenReturn("2");
+        gamePlayer.getMove();
+        verify(boardView).placeMove(2,2);
+
 
     }
+
+    @Test
+    public void shouldNotSwitchPlayersIfMoveNotValid() throws Exception {
+        when(reader.readLine()).thenReturn("1");
+        gamePlayer.getMove();
+        when(reader.readLine()).thenReturn("1");
+        gamePlayer.getMove();
+        verify(boardView, times(2)).placeMove(1, 1);
+    }
+
+    @Test
+    public void shouldQuitGameWhenBoardIsFull() throws Exception {
+        when(boardView.boardIsFull()).thenReturn(true);
+        gamePlayer.getMove();
+        verify(printStream).println("Nice Game the game is over");
+
+    }
+
+
 }

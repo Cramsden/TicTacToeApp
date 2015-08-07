@@ -17,10 +17,12 @@ public class BoardViewTest {
     private PrintStream printStream;
     private BoardView boardView;
     private HashMap<Integer, Boolean> boardModel;
+    private GamePlayer gamePlayer;
 
     @Before
     public void setUp() throws Exception {
         printStream = mock(PrintStream.class);
+        gamePlayer = mock(GamePlayer.class);
         boardView = new BoardView(printStream);
         boardModel = new HashMap<>();
         for (int i=1; i<=9; i++) {
@@ -68,7 +70,15 @@ public class BoardViewTest {
 
     @Test
     public void shouldMakeOWhenPlayer2Moves() throws Exception {
+        boardView.placeMove(1, 1);
+
+    }
+
+    @Test
+    public void shouldReportWinWhen3InARow() throws Exception {
         boardView.placeMove(1,1);
+        boardView.placeMove(2,1);
+        boardView.placeMove(3,1);
 
     }
 }

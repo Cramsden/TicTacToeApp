@@ -11,6 +11,8 @@ public class GamePlayer {
     private BoardView boardView;
     private PrintStream printStream;
     private Boolean isGame;
+    private Integer player;
+    private Boolean isFull;
     //private Map<Integer,Boolean> BoardModel;
 
     public GamePlayer(BufferedReader reader, BoardView boardView, PrintStream printStream) {
@@ -18,10 +20,18 @@ public class GamePlayer {
         this.boardView = boardView;
         this.printStream = printStream;
         isGame = true;
+        player = 1;
     }
 
 
     public void getMove() {
+        Boolean movePlaced = false;
+        while (isGame) {
+            isFull = boardView.boardIsFull();
+            if (isFull) {
+                quit();
+                break;
+            }
             printStream.println("Please Enter a Square in Which to move (1-9):");
             String userInput = "";
             try {
@@ -32,15 +42,25 @@ public class GamePlayer {
             Integer place = Integer.parseInt(userInput);
             if (place <= 9 && place > 0) {
                 boardView.saveMove(place);
-                boardView.placeMove(place, 1);
+                movePlaced = boardView.placeMove(place, player);
                 boardView.drawSpacesAndSeparators();
             } else {
                 printStream.println("That is not a valid input, please try again.");
             }
+            if (movePlaced == true) {
+                switchPlayer();
+            }
+        }
 
-
-
-
+    }
+    public void switchPlayer(){
+        if (player ==1)
+        {
+            player=2;
+        }
+        else {
+            player =1;
+        }
     }
 
     public void quit() {
